@@ -1,0 +1,232 @@
+﻿body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    
+}
+
+#app {
+    text-align: center;
+    
+}
+
+.vertcle-scrollable > .row {
+    height: 300px;
+    overflow-y: scroll;
+    white-space: wrap;
+}
+
+    .vertcle-scrollable > .row > .col-xs-4 {
+        display: block;
+        float: none;
+    }
+#object {
+    background-image: url(https://img.itch.zone/aW1hZ2UvMTkyMjc1Mi8xMTMyMTM0NC5naWY=/original/GK2zDk.gif);
+    background-repeat: no-repeat;
+    background-size: auto
+}
+
+
+.col-xs-4 {
+    color: rgb(255, 255, 255);
+    font-size: 26px;
+    padding-bottom: 18px;
+    padding-top: 16px;
+}
+
+    .col-xs-4:nth-child(2n+1) {
+        background: #ee932b;
+    }
+
+    .col-xs-4:nth-child(2n+2) {
+        background: burlywood;
+    }
+
+
+
+.value-increase-animation {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: value-increase-animation 1s ease-in-out;
+}
+
+@keyframes value-increase-animation {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(0, -100px);
+    }
+}
+
+div.bottomwhitespace {
+    padding-bottom: 10pt;
+    padding-top: 10pt;
+    font-size: 0;
+}
+
+
+
+.btn-group .button {
+    background-color: #ee932b;
+    height: 100px;
+    width: 100px;
+    margin-top: 35pt;
+    margin-right: 40px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 12px;
+}
+
+    .btn-group .button:hover {
+        background-color: #f3ad5d;
+    }
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+   
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+.group {
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+    padding:12px;
+}
+
+.button {
+    background-color: #ee932b;
+    height: 60px;
+    width: 60px;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 12px;
+}
+
+    .button:hover {
+        background-color: #f3ad5d;
+    }
+
+.card {
+    background: #222;
+    border: 1px solid #c08643;
+    color: rgba(250, 250, 250, 0.8);
+    margin-bottom: 2rem;
+}
+
+.valueContainer {
+    width: max-content;
+    background-color: #222;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+.valueContainerSmall {
+    width: max-content;
+    background-color: #222;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding-left:15px;
+    padding-right:15px
+}
+
+    .valueContainerSmall i {
+        color: burlywood;
+        font-size: 40px;
+        margin-right: 10px;
+    }
+
+    .valueContainerSmall .value {
+        margin: 0;
+        color: white;
+        font-size: 40px;
+    }
+
+    .valueContainer i {
+        color: burlywood;
+        font-size: 40px;
+        margin-right: 10px;
+    }
+
+    .valueContainer .value {
+        margin: 0;
+        color: white;
+        font-size: 40px;
+    }
+
+.imageContainer {
+    height: 200px;
+    width: 250px;
+}
+
+.priceText {
+    font-size: 40px;
+    color: white;
+}
+
+.buttonBuy {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #ee932b;
+    padding: 10px 32px;
+    cursor: pointer;
+    border-radius: 12px;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+.buttonBuy i {
+    color: white;
+    font-size: 40px;
+    
+}
+
+    .buttonBuy:hover {
+        background-color: #f3ad5d;
+    }
+
+.toast-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+}
+
+.b-modal-custom .modal-header .close-button {
+    color: red;
+}
+
+
+

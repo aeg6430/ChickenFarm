@@ -1,0 +1,204 @@
+﻿
+
+<link rel="stylesheet" href="~/Content/index.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.23.1/bootstrap-vue.min.js" integrity="sha512-SP/zE7YazvnUG95bWnA1AeC5+WtAOqumEHSgcKTNfVefAMsDcVCt6D3Q3goqR3vSf50zPG3OZtnMjBJd9GBgkw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuid.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<body style="background-image: url(https://cdn.create.vista.com/api/media/medium/442945680/stock-vector-lawn-grass-seamless-summer-vector?token=); ">
+    <div id="app">
+
+        <b-modal id="modalStore" size="xl" hide-footer custom-class="b-modal-custom">
+            <div class="container mx-auto mt-4">
+
+                <div class="valueContainer">
+
+                    <i class="fa fa-solid fa-egg"></i>
+
+                    <p class="value">{{ formatValue(value) }}</p>
+
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-4" v-for="(skins, index) in skins" :key="index">
+                        <div class="card" style="width: 18rem;">
+                            <div class="imageContainer">
+                                <img v-bind:src="skins.img" class="card-img-top" alt="Oops Our Chicken Seems Gone" />
+
+                            </div>
+
+                            <div class="card-body text-center">
+                                <h2 class="card-title">{{skins.title}}</h2>
+                                <h3 class="card-text">{{skins.text}} </h3>
+                                <button class="buttonBuy">
+                                    <i class="fa fa-solid fa-egg"></i>
+                                    <p class="priceText">{{formatValue(skins.cost)}}</p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <template #modal-footer>
+                <!-- Omitting footer content -->
+            </template>
+        </b-modal>
+        <b-modal id="modalAchievement" size="xl" hide-footer custom-class="b-modal-custom">
+
+            <div class="row">
+
+                <b-card v-for="(achievement, index) in achievements"
+                        :key="index" bg-variant="dark" text-variant="white"
+                        class="col-md-2" style="  width:200px; margin:5px">
+                    <b-card-header class="text-center" style="font-size: 60px; color: dimgray">
+
+                        <span v-if="index == 0 && achievement.unlocked==true" class="material-symbols-outlined" style="font-size: 60px; color: deepskyblue ">
+                            rocket_launch
+                        </span>
+                        <span v-else-if="index == 1 && achievement.unlocked==true" class="material-symbols-outlined" style="font-size:60px; color:khaki">
+                            ads_click
+                        </span>
+
+                        <i v-else-if="index === 2 && achievement.unlocked==true" class="fa fa-solid fa-egg" style="color:burlywood"></i>
+                        <span v-else-if="index === 3 && achievement.unlocked==true" class="material-symbols-outlined" style="font-size: 60px; color:goldenrod">
+                            social_leaderboard
+                        </span>
+                        <i v-else class="fa-sharp fa-solid fa-circle-question"></i>
+
+                    </b-card-header>
+                    <p class="text-center" style="font-size: 28px">{{achievement.title}}</p>
+                    <p class="text-center">{{achievement.text}}</p>
+                </b-card>
+            </div>
+
+
+
+
+
+            <template #modal-footer>
+                <!-- Omitting footer content -->
+            </template>
+        </b-modal>
+        <div class="row row-cols-2">
+            <div class="col">
+                <div class="container">
+                    <div class="valueContainerSmall">
+                        <i class="fa fa-solid fa-egg"></i>
+                        <p class="value">{{ formatValue(value) }}</p>
+                    </div>
+                    <transition-group name="value-increase-animation">
+                        <span v-for="(increase, index) in valueIncreases" :key="index"
+                              class="value-increase-animation"  style="color:white">
+                            <i class="fa fa-solid fa-egg" style="color:burlywood"></i>
+                            +{{ increase }}
+                        </span>
+                    </transition-group>
+
+
+                    <div class="chicken" @@click="addValue(bonusValue)">
+                        <img src="~/Images/ChickenIdle.gif" alt="Oops Our  Chicken  Seems Gone" style="width: 120px; height: auto ">
+
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+
+                <div class="container vertcle-scrollable">
+                    <div class="row text-center"  style="border-radius:8px">
+                        <div class="col-xs-4">
+                            <button @@click="buyAutoClick" :disabled="value < 5 || autoClickActive" style="width: 100%;  border:none; border-radius:12px">
+                                <p>自動增加  <i class="fa fa-solid fa-egg" style="color:burlywood"></i>5</p>
+
+                            </button>
+                        </div>
+                        <div class="col-xs-4" v-for="(bonus, index) in bonuses" :key="index"    >
+
+                            <button v-if="bonus.level<10" @@click="upgradeBonus(index)" :disabled="bonus.disabled || value < bonus.cost || bonus.level==10" style="width: 100%; border: none; border-radius:12px">
+                                <img v-bind:src="bonus.img" alt="" :style="{ opacity: bonus.disabled || value < bonus.cost || bonus.level==10 ? 0.5 : 1 }" /> {{ bonus.name}}  Lv: {{ bonus.level }} <i class="fa fa-solid fa-egg" style="color:burlywood"></i> {{ formatValue(bonus.cost) }}
+                            </button>
+                            <button v-else @@click="upgradeBonus(index)" :disabled="bonus.disabled || value < bonus.cost || bonus.level==10" style="width: 100%; border: none;border-radius:12px">
+                                <img v-bind:src="bonus.img" alt="" :style="{ opacity: bonus.disabled || value < bonus.cost || bonus.level==10 ? 0.5 : 1 }" /> {{ bonus.name}} 已滿級
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="bottomwhitespace center">
+                <div class="btn-group">
+                    <!-----button class="button" @@click="reloadSwitchStatus" onclick="location.href='@Url.Action("SettingPage","Home")'"><i class="fa-solid fa-gear"></i></---button--->
+                    <button class="button" @@click="saveGame"><i :class="iconClass"></i></button>
+                    <button class="button" onclick="location.href='@Url.Action("LandingPage","Home")'"><i class="fa-solid fa-home"></i></button>
+                    <!--button class="button" @@click="openModalStore"><i class="fa-solid fa-store"></i></!--button-->
+                    <button class="button" @@click="openModalAchievement"><i class="fa-solid fa-trophy"></i></button>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+        <div class="toast-container">
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">{{toastData[toastStatus].type}}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    <p>
+
+                        {{toastData[toastStatus].text}}
+                        <span v-if="toastStatus === 1">{{ eggs }}{{ toastData[toastStatus].text2 }}</span>
+                        <span v-else-if="toastStatus === 10">{{UserLoginID}}</span>
+                        <span v-else>{{ toastData[toastStatus].achievements }}</span>
+
+
+
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+</body>
+
+
+
+
+

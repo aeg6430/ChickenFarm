@@ -1,0 +1,4 @@
+C:\Users\p10380878\Desktop\測試\Dapper\obj\Debug\DapperFile.csproj.AssemblyReference.cache
+C:\Users\p10380878\Desktop\測試\Dapper\obj\Debug\DapperFile.csproj.CoreCompileInputs.cache
+C:\Users\p10380878\Desktop\測試\Dapper\obj\Debug\Dapper.dll
+C:\Users\p10380878\Desktop\測試\Dapper\obj\Debug\Dapper.pdb

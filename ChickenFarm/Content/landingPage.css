@@ -1,0 +1,112 @@
+﻿.parent {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+div.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    align-content: center;
+    text-align: center;
+}
+
+div.bottomwhitespace {
+    padding-bottom: 20px;
+    padding-top: 70px;
+    font-size: 0;
+    width:400px;
+    display:flex
+}
+
+
+
+.btn-group .button {
+    background-color: #ee932b;
+    height: 100px;
+    width: 100px;
+    margin-top: 35pt;
+    margin-right: 40px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 12px;
+}
+
+.btn-group .button :hover {
+    background-color: #f3ad5d;
+}
+
+.btn-group .buttonNotLoggedin {
+    background-color: #f3ad5d;
+    height: 100px;
+    width: 100px;
+    margin-top: 35pt;
+    margin-right: 40px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 12px;
+}
+
+.signInButtonContainer {
+    display: inline-block;
+    justify-content: center;
+}
+
+.signInButton {
+    background-color: #ee6c2b;
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    display: block;
+    margin-top: 20px;
+    border-radius: 12px;
+}
+
+    .signInButton:hover {
+        background-color: #f2a57c;
+    }
+
+
+
+
+.nav-tabs > li > a {
+    color: #ee932b;
+}
+
+    .nav-tabs > li > a:hover {
+        background-color: #f3ad5d;
+        color: white;
+    }
+
+.nav-tabs > li > .nav-link.active {
+    background-color: #ee932b;
+    color: white;
+}
+
+.submitButton {
+    background-color: #ee932b;
+}
+
+    .submitButton :hover {
+        background-color: #f3ad5d;
+    }

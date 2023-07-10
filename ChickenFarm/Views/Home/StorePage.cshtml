@@ -1,0 +1,41 @@
+﻿<link rel="stylesheet" href="~/Content/bootstrap.css">
+<link rel="stylesheet" href="~/Content/storePage.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<div id="app">
+    <div class="container mx-auto mt-4">
+
+        <div class="group">
+            <button class="button" @@click="reloadGame" onclick="javascript:history.back()"><i class="fa-solid fa-arrow-left"></i></button>
+            <div class="valueContainer">
+
+                <img src="~/Images/Items/I_dragon_egg.png" style="width: 35% ">
+
+                <p class="value">99999</p>
+
+            </div>
+
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4" v-for="(rewards, index) in rewards" :key="index">
+                <div class="card" style="width: 18rem;">
+                    <div class="imageContainer">
+                        <img  v-bind:src="rewards.url" class="card-img-top" alt="Oops Our Chicken Seems Gone" />
+                    </div>
+
+                    <div class="card-body text-center">
+                        <h2 class="card-title">{{rewards.title}}</h2>
+                        <h3 class="card-text">{{rewards.text}} </h3>
+                        <button class="buttonRedirect">
+                            <img style="width: 60px;" src="~/Images/Items/I_dragon_egg.png">
+                            <p class="priceText">{{rewards.cost}}</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

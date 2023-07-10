@@ -1,0 +1,76 @@
+﻿body {
+}
+.storeContainer {
+    width:70%;
+    background-color:aliceblue;
+    border-radius:12px;
+}
+.group {
+    width:fit-content;
+    display:flex;
+}
+.button {
+    background-color: #ee932b;
+    height: 60px;
+    width: 60px;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 12px;
+    margin-right:20px
+}
+
+    .button:hover {
+        background-color: #f3ad5d;
+    }
+.card {
+    background: #222;
+    border: 1px solid #c08643;
+    color: rgba(250, 250, 250, 0.8);
+    margin-bottom: 2rem;
+}
+
+.valueContainer {
+    width: 200px;
+    background-color: #222;
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.value {
+    color: white;
+    font-size: 40px;
+}
+
+.imageContainer {
+    height: 200px;
+    width: 250px;
+}
+
+.priceText {
+    font-size: 40px;
+    color: white;
+}
+
+.buttonRedirect {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #c08643;
+    padding: 15px 32px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+    .buttonRedirect:hover {
+        background-color: rgba(238, 147, 43, 0.637);
+    }

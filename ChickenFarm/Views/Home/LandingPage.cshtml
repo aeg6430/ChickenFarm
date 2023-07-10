@@ -1,0 +1,290 @@
+﻿<link rel="stylesheet" href="~/Content/landingPage.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuid.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.23.1/bootstrap-vue.min.js" integrity="sha512-SP/zE7YazvnUG95bWnA1AeC5+WtAOqumEHSgcKTNfVefAMsDcVCt6D3Q3goqR3vSf50zPG3OZtnMjBJd9GBgkw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    Vue.component('ValidationObserver', VeeValidate.ValidationObserver);
+    Vue.component('ValidationProvider', VeeValidate.ValidationProvider);
+</script>
+
+
+<div id="app">
+
+
+    <b-modal id="modalLogin" size="sml" hide-footer custom-class="b-modal-custom" title="">
+        @*<ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active " id="signup-tab" data-bs-toggle="pill" data-bs-target="#signup" type="button" role="tab" aria-controls="signup" aria-selected="true" >註冊</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link   " id="signin-tab" data-bs-toggle="pill" data-bs-target="#signin" type="button" role="tab" aria-controls="signin" aria-selected="false" >登入</a>
+            </li>
+        </ul>*@
+
+        @*<div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="signup" role="tabpanel" aria-labelledby="signup-tab">
+                <div>
+                    <div class="form-outline mb-4">
+                        <label for="id">名稱</label>
+                        <input v-model="UserID"
+                               v-bind:class="{'form-control': true, 'is-invalid': (idBlured && (!validID(UserID) || UserID.trim() === ''))}"
+                               v-on:blur="idBlured = true">
+                        <div class="invalid-feedback">
+                            <span v-if="UserID.trim() === ''">名稱為必填項目</span>
+                            <span v-else-if="!validID(UserID)">名稱需6個字以上</span>
+                        </div>
+                        <span v-if="isUserIDExist" style="color: #dc3545; font-size: .875em ">名稱已被使用</span>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label for="email">Email</label>
+                        <input v-model="UserEmail"
+                               v-bind:class="{'form-control': true, 'is-invalid': (emailBlured && (!validEmail(UserEmail) || UserEmail.trim() === ''))}"
+                               v-on:blur="emailBlured">
+                        <div class="invalid-feedback">
+                            <span v-if="UserEmail.trim() === ''">Email為必填項目</span>
+                            <span v-else-if="!validEmail(UserEmail)">Email格式不正確</span>
+                        </div>
+                        <span v-if="isUserEmailExist" style="color: #dc3545; font-size: .875em ">Email已被使用</span>
+
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label for="password">密碼</label>
+                        <div class="input-group">
+                            <input v-model="UserPassword"
+                                   :type="showPassword ? 'text' : 'password'"
+                                   v-bind:class="{'form-control': true, 'is-invalid': (passwordBlured && (!validPassword(UserPassword) || UserPassword.trim() === ''))}"
+                                   v-on:blur="passwordBlured = true">
+                            <button class="btn btn-outline-secondary" style="border-color: #ced4da; border-top-right-radius: 4px; border-bottom-right-radius:4px " @@click="showPassword = !showPassword">
+                                <i :class="showPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
+                            </button>
+
+
+                            <div class="invalid-feedback">
+                                <span v-if="UserPassword.trim() === ''">密碼為必填項目</span>
+                                <span v-else-if="!validPassword(UserPassword)">密碼需5字以上且至少一大寫字母</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-check d-flex justify-content-center mb-4">
+                        <button type="submit" class="btn btn-primary btn-block mb-3" @@click="register">註冊</button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="signin" role="tabpanel" aria-labelledby="signin-tab">
+                <div>
+
+
+                    <div class="form-outline mb-4">
+                        <label for="email">Email</label>
+                        <input v-model="UserLoginEmail"
+                               v-bind:class="{'form-control': true, 'is-invalid': (emailLoginBlured && (!validEmail(UserLoginEmail) || UserLoginEmail.trim() === ''))}"
+                               v-on:blur="emailLoginBlured= true">
+                        <div class="invalid-feedback">
+                            <span v-if="UserLoginEmail.trim() === ''">Email為必填項目</span>
+                            <span v-else-if="!validEmail(UserLoginEmail)">Email格式不正確</span>
+                        </div>
+                        <span v-if="isUserLoginEmailNotExist" style="color: #dc3545; font-size: .875em ">Email不存在</span>
+
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label for="password">密碼</label>
+                        <div class="input-group">
+                            <input v-model="UserLoginPassword"
+                                   :type="showLoginPassword ? 'text' : 'password'"
+                                   v-bind:class="{'form-control': true, 'is-invalid': (passwordLoginBlured && (UserLoginPassword.trim() === ''))}"
+                                   v-on:blur="passwordLoginBlured = true">
+                            <button class="btn btn-outline-secondary" style="border-color: #ced4da; border-top-right-radius: 4px; border-bottom-right-radius:4px " @@click="showLoginPassword = !showLoginPassword">
+                                <i :class="showLoginPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
+                            </button>
+                            </input>
+                            <div class="invalid-feedback">
+                                <span v-if="UserLoginPassword.trim() === ''">密碼為必填項目</span>
+                            </div>
+                        </div>
+                        <span v-if="isUserLoginPasswordNotExist" style="color: #dc3545; font-size: .875em ">密碼錯誤</span>
+                    </div>
+
+
+
+                    <div class="form-check d-flex justify-content-center mb-4">
+                        <button type="submit" class="btn btn-primary btn-block mb-3" @@click="login">登入</button>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>*@
+
+
+ 
+
+
+            <ul class="nav nav-tabs nav-justified mb-3" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#t1" data-bs-toggle="tab">註冊</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#t2" data-bs-toggle="tab">登入</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="t1" role="tabpanel">
+                    <div>
+                        <div class="form-outline mb-4">
+                            <label for="id">名稱</label>
+                            <input v-model="UserID"
+                                   v-bind:class="{'form-control': true, 'is-invalid': (idBlured && (!validID(UserID) || UserID.trim() === ''))}"
+                                   v-on:blur="idBlured = true">
+                            <div class="invalid-feedback">
+                                <span v-if="UserID.trim() === ''">名稱為必填項目</span>
+                                <span v-else-if="!validID(UserID)">名稱需6個字以上</span>
+                            </div>
+                            <span v-if="isUserIDExist" style="color: #dc3545; font-size: .875em ">名稱已被使用</span>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label for="email">Email</label>
+                            <input v-model="UserEmail"
+                                   v-bind:class="{'form-control': true, 'is-invalid': (emailBlured && (!validEmail(UserEmail) || UserEmail.trim() === ''))}"
+                                   v-on:blur="emailBlured">
+                            <div class="invalid-feedback">
+                                <span v-if="UserEmail.trim() === ''">Email為必填項目</span>
+                                <span v-else-if="!validEmail(UserEmail)">Email格式不正確</span>
+                            </div>
+                            <span v-if="isUserEmailExist" style="color: #dc3545; font-size: .875em ">Email已被使用</span>
+
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label for="password">密碼</label>
+                            <div class="input-group">
+                                <input v-model="UserPassword"
+                                       :type="showPassword ? 'text' : 'password'"
+                                       v-bind:class="{'form-control': true, 'is-invalid': (passwordBlured && (!validPassword(UserPassword) || UserPassword.trim() === ''))}"
+                                       v-on:blur="passwordBlured = true">
+                                <button class="btn btn-outline-secondary" style="border-color: #ced4da; border-top-right-radius: 4px; border-bottom-right-radius:4px " @@click="showPassword = !showPassword">
+                                    <i :class="showPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
+                                </button>
+
+
+                                <div class="invalid-feedback">
+                                    <span v-if="UserPassword.trim() === ''">密碼為必填項目</span>
+                                    <span v-else-if="!validPassword(UserPassword)">密碼需5字以上且至少一大寫字母</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-check d-flex justify-content-center mb-4">
+                            <button type="submit" class="btn btn-block mb-3" style="background-color: #ee932b; color:white" @@click="register">註冊</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="t2" role="tabpanel">
+                    <div>
+
+
+                        <div class="form-outline mb-4">
+                            <label for="email">Email</label>
+                            <input v-model="UserLoginEmail"
+                                   v-bind:class="{'form-control': true, 'is-invalid': (emailLoginBlured && (!validEmail(UserLoginEmail) || UserLoginEmail.trim() === ''))}"
+                                   v-on:blur="emailLoginBlured= true">
+                            <div class="invalid-feedback">
+                                <span v-if="UserLoginEmail.trim() === ''">Email為必填項目</span>
+                                <span v-else-if="!validEmail(UserLoginEmail)">Email格式不正確</span>
+                            </div>
+                            <span v-if="isUserLoginEmailNotExist" style="color: #dc3545; font-size: .875em ">Email不存在</span>
+
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label for="password">密碼</label>
+                            <div class="input-group">
+                                <input v-model="UserLoginPassword"
+                                       :type="showLoginPassword ? 'text' : 'password'"
+                                       v-bind:class="{'form-control': true, 'is-invalid': (passwordLoginBlured && (UserLoginPassword.trim() === ''))}"
+                                       v-on:blur="passwordLoginBlured = true">
+                                <button class="btn btn-outline-secondary" style="border-color: #ced4da; border-top-right-radius: 4px; border-bottom-right-radius:4px " @@click="showLoginPassword = !showLoginPassword">
+                                    <i :class="showLoginPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
+                                </button>
+                                </input>
+                                <div class="invalid-feedback">
+                                    <span v-if="UserLoginPassword.trim() === ''">密碼為必填項目</span>
+                                </div>
+                            </div>
+                            <span v-if="isUserLoginPasswordNotExist" style="color: #dc3545; font-size: .875em ">密碼錯誤</span>
+                        </div>
+
+
+
+                        <div class="form-check d-flex justify-content-center mb-4">
+                            <button type="submit" class="btn  btn-block mb-3" style="background-color: #ee932b; color:white" @@click="login">登入</button>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <template #modal-footer>
+            </template>
+    </b-modal>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="parent">
+        <div class="container">
+            <div class="bottomwhitespace center">
+                <div class="btn-group">
+                    <button class="button" @@click="reloadSwitchStatus();reloadLoginStatus();" onclick="location.href='@Url.Action("SettingPage","Home")'"><i class="fa-solid fa-gear"></i></button>
+                    <button class="button" @@click="reloadSwitchStatus();reloadLoginStatus();" onclick="location.href='@Url.Action("Index","Home")'"><i class="fa-solid fa-play"></i></button>
+                    <button class="button" v-if="isLoggedin" onclick="location.href='@Url.Action("RankingPage","Home")'"><i class="fa-solid fa-ranking-star"></i></button>
+                    <button class="button" v-if="!isLoggedin" style="background-color: #f3ad5d"><i class="fa-solid fa-ranking-star"></i></button>
+                </div>
+            </div>
+
+            <div class="center" v-show="!this.isLoggedin">
+                <div class="btn-group">
+                    <div class="signInButtonContainer center">
+                        <button class="signInButton" @@click="openModalLogin">登入可查看排名</button>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+</div>

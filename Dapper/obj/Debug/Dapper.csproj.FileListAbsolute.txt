@@ -1,0 +1,10 @@
+C:\Users\p10380878\Desktop\測試\Dapper\bin\Debug\Dapper.dll
+C:\Users\p10380878\Desktop\測試\Dapper\bin\Debug\Dapper.pdb
+C:\Users\p10380878\Desktop\測試\Dapper\bin\Debug\Core.dll
+C:\Users\p10380878\Desktop\測試\Dapper\bin\Debug\Core.pdb
+C:\Users\p10380878\Desktop\測試\Dapper\bin\Debug\Dapper.xml
+C:\Users\p10380878\Desktop\測試\Dapper\obj\Debug\Dapper.csproj.AssemblyReference.cache
+C:\Users\p10380878\Desktop\測試\Dapper\obj\Debug\Dapper.csproj.CoreCompileInputs.cache
+C:\Users\p10380878\Desktop\測試\Dapper\obj\Debug\Dapper.csproj.CopyComplete
+C:\Users\p10380878\Desktop\測試\Dapper\obj\Debug\Dapper.dll
+C:\Users\p10380878\Desktop\測試\Dapper\obj\Debug\Dapper.pdb
